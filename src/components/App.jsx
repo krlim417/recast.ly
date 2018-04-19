@@ -5,7 +5,13 @@ class App extends React.Component {
     this.state = {
       videos: this.props.videos,
       currentVideo: this.props.videos[0] || null
-    }
+    };
+  }
+
+  handleVideoEntryTitleClick(video) {
+    this.setState({
+      currentVideo: video
+    });
   }
 
   render() {
@@ -21,11 +27,11 @@ class App extends React.Component {
             <VideoPlayer video={this.state.currentVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos={this.state.videos}/>
+            <VideoList handleVideoEntryTitleClick={this.handleVideoEntryTitleClick.bind(this)} videos={this.state.videos}/>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
