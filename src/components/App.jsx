@@ -3,9 +3,28 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      videos: this.props.videos,
-      currentVideo: this.props.videos[0] || null
+      videos: [],
+      currentVideo: null
     };
+  }
+
+  componentDidMount() {
+    this.initiateSearch('The Duck Song');
+  }
+
+  initiateSearch(query) {
+    var options = {
+      key: this.props.API_KEY,
+      query: query
+    };
+
+
+    this.props.searchYouTube(options, (videos) =>
+      this.setState({
+        videos: videos,
+        currentVideo: videos[0]
+      })
+    );
   }
 
   handleVideoEntryTitleClick(video) {
@@ -19,7 +38,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search />
+            <Search initiateSearch={this.initiateSearch.bind(this)}/>
           </div>
         </nav>
         <div className="row">
