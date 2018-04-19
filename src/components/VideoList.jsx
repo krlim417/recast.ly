@@ -1,7 +1,7 @@
-var VideoList = ({videos}) => (
+var VideoList = ({handleVideoEntryTitleClick, videos}) => (
   <div className="video-list">
     {videos.map(video =>
-      <VideoListEntry video={video} key={video.id.videoId}/>
+      <VideoListEntry handleVideoEntryTitleClick={handleVideoEntryTitleClick} video={video} key={video.id.videoId}/>
     )}
   </div>
 );
